@@ -1,25 +1,40 @@
 <template>
-  <main>
-    <div>
-      <h3>Navigation</h3>
-    </div>
+  <div class="main">
+    <NavBar />
     <router-view> </router-view>
-  </main>
+  </div>
 </template>
 
 <script setup>
-import QRCode from '@/components/QRCode.vue';
+import NavBar from '@/components/NavBar.vue';
 </script>
 
-<style scoped lang="scss">
-$link: #d62828;
-$dark: #000814;
-$light: #edf6f9;
-$accent: #003566;
-$primary: #001d3d;
-$secondary: #ffc300;
+<style lang="scss">
+@import './styles/variables';
 
-body {
-  background-color: $dark;
+.text {
+  &-link {
+    color: $link;
+  }
+  &-dark {
+    color: $dark;
+  }
+  &-light {
+    color: $light;
+  }
+  &-accent {
+    color: $accent;
+  }
+  &-primary {
+    color: $primary;
+  }
+  &-secondary {
+    color: $secondary;
+  }
+}
+
+.main {
+  height: 100vh;
+  // background-color: $dark;
 }
 </style>
