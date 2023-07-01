@@ -4,4 +4,11 @@ import './style.css';
 import App from './App.vue';
 import router from './plugins/router';
 
-createApp(App).use(router).mount('#app');
+import { Icon } from '@iconify/vue';
+import IconButton from '@/components/IconButton.vue';
+
+createApp(App)
+  .use(router)
+  .component('VueIcon', Icon)
+  .component('IconButton', IconButton)
+  .mount('#app');
