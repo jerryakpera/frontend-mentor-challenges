@@ -1,22 +1,15 @@
 <template>
   <main>
     <div>
-      <h1>Frontend Mentor Challenges</h1>
-      <h5>
-        Below are an ever growing collection of solutions to Frontend Mentor
-        Challenges
-      </h5>
+      <h3>Navigation</h3>
     </div>
-
     <router-view> </router-view>
-    <h4>
-      <!-- Each challenge should have a link to the challenge page, my github code and the actual solution -->
-      <div>List of cards with challenges and links to challenge</div>
-    </h4>
   </main>
 </template>
 
-<script setup></script>
+<script setup>
+import QRCode from '@/components/QRCode.vue';
+</script>
 
 <style scoped lang="scss">
 $link: #d62828;
