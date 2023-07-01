@@ -10,6 +10,17 @@
     </div>
     <div class="challenge--body">
       <div class="challenge--link">
+        <a
+          :href="challenge.solutionCode"
+          target="_blank"
+        >
+          View Code
+        </a>
+      </div>
+
+      <div class="splitter"></div>
+
+      <div class="challenge--link">
         <router-link :to="challenge.solutionLink"> View Solution </router-link>
       </div>
     </div>
@@ -46,9 +57,24 @@ const props = defineProps(['challenge']);
     margin-bottom: 5px;
   }
 
+  .challenge--body {
+    display: flex;
+    justify-content: center;
+
+    a {
+      color: $secondary;
+    }
+
+    .splitter {
+      height: 20px;
+      border: 1px solid $secondary;
+      margin: 0 10px;
+    }
+  }
+
   a {
     color: $light;
-    font-weight: bold;
+    // font-weight: bold;
     text-decoration: none;
   }
 }

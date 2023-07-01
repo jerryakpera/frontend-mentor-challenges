@@ -30,6 +30,8 @@ const challenges = [
     challengeLink:
       'https://www.frontendmentor.io/challenges/qr-code-component-iux_sIO_H/hub',
     solutionLink: '/qr-code',
+    solutionCode:
+      'https://github.com/jerryakpera/frontend-mentor-challenges/blob/main/src/views/QRCode.vue',
   },
   // {
   //   id: 1,
