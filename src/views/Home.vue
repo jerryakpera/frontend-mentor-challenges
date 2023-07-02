@@ -37,10 +37,10 @@ const challenges = [
     id: 2,
     title: 'Newsletter Signup',
     challengeLink:
-      'https://www.frontendmentor.io/challenges/qr-code-component-iux_sIO_H/hub',
+      'https://www.frontendmentor.io/challenges/newsletter-signup-form-with-success-message-3FC1AZbNrv/hub',
     solutionLink: '/newsletter-signup',
     solutionCode:
-      'https://github.com/jerryakpera/frontend-mentor-challenges/blob/main/src/views/QRCode.vue',
+      'https://github.com/jerryakpera/frontend-mentor-challenges/blob/main/src/views/NewsletterSignup.vue',
   },
 ];
 </script>
