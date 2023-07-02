@@ -6,13 +6,16 @@
     <div
       class="newsletter"
       :class="isMobile ? 'mobile' : ''"
-      v-if="!success && !error"
+      v-if="!success"
     >
       <div
         class="col-1"
         :class="isMobile ? 'mobile' : ''"
       >
-        <form @submit.prevent.stop="handleFormSubmit">
+        <form
+          @submit.prevent.stop="handleFormSubmit"
+          autocomplete="off"
+        >
           <div>
             <h2>Stay updated!</h2>
             <p>Join 60,000+ product managers receiving monthly updates on:</p>
@@ -30,14 +33,19 @@
               </li>
             </ul>
 
-            <div class="email-container error">
+            <div class="email-container">
               <div class="label">
                 <label for="email">Email address</label>
-                <label class="error-msg">Valid email required</label>
+                <label
+                  class="error-msg"
+                  v-if="error"
+                  >Valid email required</label
+                >
               </div>
               <input
                 id="email"
-                type="email"
+                type="text"
+                v-model="email"
                 placeholder="email@company.com"
               />
             </div>
@@ -89,6 +97,7 @@
         <button
           type="submit"
           class="btn"
+          @click="handleDismissMessage"
         >
           Dismiss message
         </button>
@@ -102,18 +111,35 @@ import { computed, ref } from 'vue';
 import { useWindowSize } from 'vue-window-size';
 
 const error = ref(false);
-const success = ref(true);
+const success = ref(false);
 const showImage = ref(false);
 
-const { width, height } = useWindowSize();
+const email = ref('');
 
+const { width, height } = useWindowSize();
 const isMobile = computed(() => width.value <= 375);
+
+const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
 const updates = [
   'Product discovery and building what matters',
   'Measuring to ensure updates are a success',
   'And much more!',
 ];
+
+const handleFormSubmit = () => {
+  if (!regex.test(email.value)) {
+    error.value = true;
+  } else {
+    error.value = false;
+    success.value = true;
+  }
+};
+
+const handleDismissMessage = () => {
+  success.value = false;
+  error.value = false;
+};
 </script>
 
 <style lang="scss" scoped>
