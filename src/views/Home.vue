@@ -33,48 +33,15 @@ const challenges = [
     solutionCode:
       'https://github.com/jerryakpera/frontend-mentor-challenges/blob/main/src/views/QRCode.vue',
   },
-  // {
-  //   id: 1,
-  //   title: 'QR code component',
-  //   challengeLink:
-  //     'https://www.frontendmentor.io/challenges/qr-code-component-iux_sIO_H/hub',
-  //   solutionLink: '/qr-code',
-  // },
-  // {
-  //   id: 1,
-  //   title: 'QR code component',
-  //   challengeLink:
-  //     'https://www.frontendmentor.io/challenges/qr-code-component-iux_sIO_H/hub',
-  //   solutionLink: '/qr-code',
-  // },
-  // {
-  //   id: 1,
-  //   title: 'QR code component',
-  //   challengeLink:
-  //     'https://www.frontendmentor.io/challenges/qr-code-component-iux_sIO_H/hub',
-  //   solutionLink: '/qr-code',
-  // },
-  // {
-  //   id: 1,
-  //   title: 'QR code component',
-  //   challengeLink:
-  //     'https://www.frontendmentor.io/challenges/qr-code-component-iux_sIO_H/hub',
-  //   solutionLink: '/qr-code',
-  // },
-  // {
-  //   id: 1,
-  //   title: 'QR code component',
-  //   challengeLink:
-  //     'https://www.frontendmentor.io/challenges/qr-code-component-iux_sIO_H/hub',
-  //   solutionLink: '/qr-code',
-  // },
-  // {
-  //   id: 1,
-  //   title: 'QR code component',
-  //   challengeLink:
-  //     'https://www.frontendmentor.io/challenges/qr-code-component-iux_sIO_H/hub',
-  //   solutionLink: '/qr-code',
-  // },
+  {
+    id: 2,
+    title: 'Newsletter Signup',
+    challengeLink:
+      'https://www.frontendmentor.io/challenges/qr-code-component-iux_sIO_H/hub',
+    solutionLink: '/newsletter-signup',
+    solutionCode:
+      'https://github.com/jerryakpera/frontend-mentor-challenges/blob/main/src/views/QRCode.vue',
+  },
 ];
 </script>
 
