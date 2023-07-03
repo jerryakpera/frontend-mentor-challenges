@@ -9,6 +9,6 @@ import IconButton from '@/components/IconButton.vue';
 
 createApp(App)
   .use(router)
-  .component('VueIcon', Icon)
+  .component('IconifyIcon', Icon)
   .component('IconButton', IconButton)
   .mount('#app');

@@ -42,6 +42,15 @@ const challenges = [
     solutionCode:
       'https://github.com/jerryakpera/frontend-mentor-challenges/blob/main/src/views/NewsletterSignup.vue',
   },
+  {
+    id: 3,
+    title: 'Multi step form',
+    challengeLink:
+      'https://www.frontendmentor.io/challenges/newsletter-signup-form-with-success-message-3FC1AZbNrv/hub',
+    solutionLink: '/multistep-form',
+    solutionCode:
+      'https://github.com/jerryakpera/frontend-mentor-challenges/blob/main/src/views/NewsletterSignup.vue',
+  },
 ];
 </script>
 

@@ -10,4 +10,9 @@ export default [
     name: 'Newsletter Signup',
     component: () => import('@/views/NewsletterSignup.vue'),
   },
+  {
+    path: '/multistep-form',
+    name: 'Multistep Form',
+    component: () => import('@/views/MultistepForm.vue'),
+  },
 ];

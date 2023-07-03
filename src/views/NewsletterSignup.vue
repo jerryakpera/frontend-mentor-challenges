@@ -112,7 +112,6 @@ import { useWindowSize } from 'vue-window-size';
 
 const error = ref(false);
 const success = ref(false);
-const showImage = ref(false);
 
 const email = ref('');
 

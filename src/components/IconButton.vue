@@ -1,7 +1,7 @@
 <template>
   <button>
     <div class="font-2">
-      <VueIcon
+      <IconifyIcon
         :icon="icon"
         class="text-link"
         style="font-size: x-large; margin-right: 5px"
