@@ -37,12 +37,23 @@
                   class="text-gray-400"
                   style="font-size: 11px; letter-spacing: 0.5px"
                 >
-                  Step 1
+                  Step {{ i }}
                 </h5>
                 <p class="font-medium tracking-widest">
                   {{ steps[i - 1] }}
                 </p>
               </div>
+            </div>
+            <div>
+              {{ multistepStore.name }}
+              <br />
+              {{ multistepStore.email }}
+              <br />
+              {{ multistepStore.phone }}
+              <br />
+              {{ multistepStore.plan }}
+              <br />
+              {{ multistepStore.period }}
             </div>
           </div>
         </div>
@@ -54,15 +65,12 @@
       >
         <div
           style="width: 70%"
-          class="flex flex-col h-full justify-center pt-8"
+          class="flex flex-col h-full justify-center pt-4"
         >
           <Step1
             v-if="step === 1"
             @back="handleBack"
             @next="handleNext"
-            v-model:name="name"
-            v-model:email="email"
-            v-model:phone="phone"
           />
 
           <Step2
@@ -76,6 +84,12 @@
             @back="handleBack"
             @next="handleNext"
           />
+
+          <Step4
+            v-if="step === 4"
+            @back="handleBack"
+            @next="handleNext"
+          />
         </div>
       </div>
     </div>
@@ -86,21 +100,18 @@
 import Step1 from '../components/multi-step-form/Step1.vue';
 import Step2 from '../components/multi-step-form/Step2.vue';
 import Step3 from '../components/multi-step-form/Step3.vue';
+import Step4 from '../components/multi-step-form/Step4.vue';
 
 import { computed, ref } from 'vue';
 import { useWindowSize } from 'vue-window-size';
+import { useMultiStepStore } from '../plugins/stores/multistep-store';
+
+const multistepStore = useMultiStepStore();
 
 const Mobile = 375;
 const Desktop = 1440;
 
 const step = ref(1);
-
-const name = ref('');
-const plan = ref('');
-const email = ref('');
-const phone = ref('');
-const addOns = ref([]);
-const period = ref('monthly');
 
 const steps = ['Your info', 'Select a plan', 'Add ons', 'Summary'];
 
@@ -122,7 +133,7 @@ const handleBack = () => {
 };
 
 const handleNext = () => {
-  if (step.value === 3) return;
+  if (step.value === 4) return;
   step.value = step.value + 1;
 };
 </script>

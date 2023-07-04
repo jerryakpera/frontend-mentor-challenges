@@ -10,18 +10,21 @@
       <FormContainer
         label="Name"
         class="text-dark"
+        v-model="multistepStore.name"
         placeholder="e.g. Stephen King"
       />
 
       <FormContainer
         class="text-dark"
         label="Email Address"
+        v-model="multistepStore.email"
         placeholder="e.g. stephenking@lorem.com"
       />
 
       <FormContainer
-        label="Phone Number"
         class="text-dark"
+        label="Phone Number"
+        v-model="multistepStore.phone"
         placeholder="e.g. +1 234 567 890"
       />
     </div>
@@ -40,12 +43,10 @@
 <script setup>
 import FormContainer from './FormContainer.vue';
 
-const emit = defineEmits([
-  'next',
-  'update:name',
-  'update:email',
-  'update:phone',
-]);
+import { useMultiStepStore } from '../../plugins/stores/multistep-store';
+
+const emit = defineEmits(['next']);
+const multistepStore = useMultiStepStore();
 </script>
 
 <style lang="scss" scoped></style>

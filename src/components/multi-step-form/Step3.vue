@@ -1,83 +1,94 @@
 <template>
-  <div>
-    <div class="font-bold text-3xl text-dark">Pick add-ons</div>
-    <p class="mt-2 text-gray-400">
-      Add-ons help enhance your gaming experience.
-    </p>
+  <div class="h-5/6 flex flex-col justify-between">
+    <div class="flex flex-col gap-8">
+      <div>
+        <div class="font-bold text-3xl text-dark">Pick add-ons</div>
+        <p class="mt-2 text-gray-400">
+          Add-ons help enhance your gaming experience.
+        </p>
+      </div>
 
-    <div class="flex flex-col mt-5">
-      <div
-        class="flex flex-col gap-2"
-        v-for="addon in addOns"
-        :key="addon.name"
+      <div class="flex flex-col gap-4">
+        <div
+          v-for="addon in addOns"
+          :key="addon.name"
+        >
+          <AddOn
+            :addOn="addon"
+            @toggleAddOn="toggleAddOn"
+            :price="
+              multistepStore.period === 'monthly'
+                ? addon.monthlyPrice
+                : addon.yearlyPrice
+            "
+          />
+        </div>
+      </div>
+    </div>
+    <div class="self-baseline w-full justify-between flex mt-8">
+      <button
+        class="p-2 px-4 font-medium text-gray-400"
+        @click="emit('back')"
       >
-        <AddOn
-          :addOn="addon"
-          @toggleAddOn="toggleAddOn"
-          :selected="selectedAddons.includes(addon.name)"
-        />
-      </div>
+        Go Back
+      </button>
 
-      <div class="flex justify-between mt-28">
-        <button
-          class="p-2 px-4 font-medium text-gray-400"
-          @click="emit('back')"
-        >
-          Go Back
-        </button>
-
-        <button
-          class="bg-dark p-2 px-4 font-medium text-white rounded-md"
-          @click="emit('next')"
-        >
-          Next Step
-        </button>
-      </div>
+      <button
+        class="bg-dark p-2 px-4 font-medium text-white rounded-md"
+        @click="emit('next')"
+      >
+        Next Step
+      </button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import AddOn from './AddOn.vue';
 
+import _ from 'lodash';
+
+import { useMultiStepStore } from '../../plugins/stores/multistep-store';
+
 const emit = defineEmits(['back', 'next']);
+const multistepStore = useMultiStepStore();
 
 const addOns = [
   {
     no: 1,
-    price: '+$1/mo',
+    monthlyPrice: '+$1/mo',
+    yearlyPrice: '+$10/yr',
     name: 'Online Service',
     desc: 'Access to multiplayer games',
   },
   {
     no: 2,
-    price: '+$2/mo',
+    monthlyPrice: '+$2/mo',
+    yearlyPrice: '+$20/yr',
     name: 'Larger storage',
     desc: 'Extra 1TB of cloud save',
   },
   {
     no: 3,
-    price: '+$2/mo',
+    monthlyPrice: '+$2/mo',
+    yearlyPrice: '+$20/yr',
     name: 'Customizable profile',
     desc: 'Custom theme on your profile',
   },
 ];
 
-const selectedAddons = ref([]);
-
-const toggleAddOn = (addOnName) => {
-  const addOnIndex = selectedAddons.value.findIndex(
-    (addOn) => addOn == addOnName
+const toggleAddOn = (_addOn) => {
+  const addOnIndex = multistepStore.addOns.findIndex(
+    (addOn) => addOn.name == _addOn.name
   );
 
   if (addOnIndex < 0) {
-    selectedAddons.value.push(addOnName);
+    multistepStore.addOns.push(_addOn);
     return;
   }
 
-  selectedAddons.value = selectedAddons.value.filter(
-    (addOn) => addOn != addOnName
+  multistepStore.addOns = multistepStore.addOns.filter(
+    (addOn) => addOn.name != _addOn.name
   );
 };
 </script>

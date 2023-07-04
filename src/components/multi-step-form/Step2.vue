@@ -15,13 +15,12 @@
           :key="plan.name"
         >
           <BillingCard
-            :period="period"
             :name="plan.name"
             :icon="plan.icon"
+            :period="multistepStore.period"
             :yearlyPrice="plan.yearlyPrice"
             :monthlyPrice="plan.monthlyPrice"
-            @click="selectedPlan = plan.name"
-            :selected="selectedPlan === plan.name"
+            @click="multistepStore.plan = plan"
           />
         </div>
       </div>
@@ -30,7 +29,11 @@
         <div class="flex items-center gap-4">
           <span
             class="font-medium text-sm"
-            :class="period === 'monthly' ? ' text-dark' : 'text-gray-300'"
+            :class="
+              multistepStore.period === 'monthly'
+                ? ' text-dark'
+                : 'text-gray-300'
+            "
           >
             Monthly
           </span>
@@ -38,7 +41,7 @@
             <IconifyIcon
               @click="togglePeriod"
               :icon="
-                period === 'monthly'
+                multistepStore.period === 'monthly'
                   ? 'mingcute:toggle-left-fill'
                   : 'mingcute:toggle-right-fill'
               "
@@ -47,7 +50,11 @@
           </span>
           <span
             class="font-medium text-sm"
-            :class="period === 'yearly' ? ' text-dark' : 'text-gray-300'"
+            :class="
+              multistepStore.period === 'yearly'
+                ? ' text-dark'
+                : 'text-gray-300'
+            "
           >
             Yearly
           </span>
@@ -76,12 +83,12 @@
 <script setup>
 import BillingCard from './BillingCard.vue';
 
-import { ref } from 'vue';
+import { useMultiStepStore } from '../../plugins/stores/multistep-store';
 
-const emit = defineEmits(['back', 'next']);
+const props = defineProps(['title']);
+const emit = defineEmits(['back', 'next', 'update:title']);
 
-const period = ref('monthly');
-const selectedPlan = ref('Arcade');
+const multistepStore = useMultiStepStore();
 
 const plans = [
   {
@@ -89,31 +96,31 @@ const plans = [
     name: 'Arcade',
     monthlyPrice: '$9/mo',
     yearlyPrice: '$90/yr',
-    icon: '../../../public/images/multi-step-form/icon-arcade.svg',
+    icon: 'images/multi-step-form/icon-arcade.svg',
   },
   {
     no: 2,
     monthlyPrice: '$12/mo',
     yearlyPrice: '$120/yr',
     name: 'Advanced',
-    icon: '../../../public/images/multi-step-form/icon-advanced.svg',
+    icon: 'images/multi-step-form/icon-advanced.svg',
   },
   {
     no: 3,
     name: 'Pro',
     monthlyPrice: '$15/mo',
     yearlyPrice: '$150/yr',
-    icon: '../../../public/images/multi-step-form/icon-pro.svg',
+    icon: 'images/multi-step-form/icon-pro.svg',
   },
 ];
 
 const togglePeriod = () => {
-  if (period.value === 'monthly') {
-    period.value = 'yearly';
+  if (multistepStore.period === 'monthly') {
+    multistepStore.period = 'yearly';
     return;
   }
 
-  period.value = 'monthly';
+  multistepStore.period = 'monthly';
 };
 </script>
 

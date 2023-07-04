@@ -39,14 +39,22 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useMultiStepStore } from '../../plugins/stores/multistep-store';
+
 const props = defineProps([
   'icon',
   'name',
   'period',
-  'selected',
   'yearlyPrice',
   'monthlyPrice',
 ]);
+
+const multistepStore = useMultiStepStore();
+
+const selected = computed(() => {
+  return multistepStore.plan.name === props.name;
+});
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,7 +1,7 @@
 <template>
   <div
-    class="border border-gray-200 p-4 rounded-md mb-3 flex items-center justify-between cursor-pointer"
-    @click="emit('toggleAddOn', addOn.name)"
+    class="border border-gray-200 p-4 rounded-md flex items-center justify-between cursor-pointer"
+    @click="emit('toggleAddOn', addOn)"
     :class="selected ? 'bg-Magnolia border-purple-900' : ''"
   >
     <div class="flex gap-6 items-center">
@@ -24,14 +24,27 @@
     </div>
 
     <div class="justify-self-end text-blue-500 text-xs font-bold">
-      {{ addOn.price }}
+      {{ price }}
     </div>
   </div>
 </template>
 
 <script setup>
-const props = defineProps(['addOn', 'selected']);
+import { computed } from 'vue';
+import { useMultiStepStore } from '../../plugins/stores/multistep-store';
+
 const emit = defineEmits(['toggleAddOn']);
+const props = defineProps(['addOn', 'selected', 'price']);
+
+const multistepStore = useMultiStepStore();
+
+const selected = computed(() => {
+  const addOnIndex = multistepStore.addOns.findIndex(
+    (_addOn) => _addOn.name === props.addOn.name
+  );
+
+  return addOnIndex >= 0;
+});
 </script>
 
 <style lang="scss" scoped></style>
